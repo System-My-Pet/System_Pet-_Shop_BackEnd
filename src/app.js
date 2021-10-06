@@ -1,5 +1,8 @@
 const express = require('express')
 
+require('dotenv').config({ path: '.env/.env' })
+
+const MongoDB = require('./database/mongodb')
 
 const server = express()
 
@@ -11,6 +14,7 @@ server.use(express.json())
    
 //     return '<h1>Renan Monstro</h1>'
 //  })
+ MongoDB.connect()
 
 server.listen(PORT,()=>{
     console.log('server running')
