@@ -1,4 +1,17 @@
-class ExempleModel{
+const mongoose = require('mongoose');
+const { Schema } = mongoose;
 
-}
-module.exports = ExempleModel
+const TesteSchema = new Schema({
+    testeid: {
+        type: String,
+        required: true
+    },
+    date: {
+        type: Date,
+        default: Date.now
+    }
+});
+
+const Teste = mongoose.model('Teste', TesteSchema);
+
+module.exports = Teste;
