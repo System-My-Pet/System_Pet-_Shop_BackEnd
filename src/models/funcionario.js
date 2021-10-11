@@ -21,10 +21,7 @@ const FuncionarioSchema = new Schema({
     dataAtualizacao: {
         type: Date
     },
-    date: {
-        type: Date,
-        default: Date.now
-    }
+
 });
 
 const Funcionario = mongoose.model('Funcionarios', FuncionarioSchema);
