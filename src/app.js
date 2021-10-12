@@ -1,6 +1,6 @@
 const express = require('express')
-const routers = require('./controllers/exemplo-controller')
-//const testeController = require('./controllers/exemplo-controller')
+//const routers = require('./controllers/exemplo-controller')
+const routers = require('./routes');
 
 require('dotenv').config({ path: '.env/.env' })
 
