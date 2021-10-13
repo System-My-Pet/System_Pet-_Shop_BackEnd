@@ -10,6 +10,16 @@ class FuncionarioController{
         } 
     }
 
+    static async login(login, senha, res){
+        const usuario =  await Funcionarios.findOne({login, senha},{_id: 0})
+ 
+        if(!usuario){
+             return  {message: 'Usuário não existe!'}
+        }
+          
+        return usuario
+    }
+
 
 }
 module.exports = FuncionarioController
