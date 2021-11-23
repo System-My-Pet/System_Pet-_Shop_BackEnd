@@ -10,6 +10,10 @@ const AtendimentoSchema = new Schema({
         type: String,
         required: true
     },
+    especie: {
+        type: String,
+        required: true
+    },
     email: {
        type: String,
        required: true 
@@ -27,7 +31,8 @@ const AtendimentoSchema = new Schema({
         default: Date.now
     },
     dataDeSaida: {
-        type: Date
+        type: Date,
+        default: new Date()
     },
 
 });
