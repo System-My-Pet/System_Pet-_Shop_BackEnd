@@ -3,6 +3,25 @@ const atendimentoController = require('./controllers/atendimento-controller');
 const express = require('express')
 const routers = express.Router();
 
+
+/**
+ * @swagger
+ * /login:
+ *   post:
+ *     summary: Retrieve a single JSONPlaceholder user.
+ *     description: Retrieve a single JSONPlaceholder user. Can be used to populate a user profile when prototyping or testing an API.
+ *     parameters:
+ *       - in: body
+ *         name: id
+ *         required: true
+ *         description: Numeric ID of the user to retrieve.
+ *         schema:
+ *           type: object
+ *     responses:
+ *       200:
+ *         
+ */
+ 
 routers.post('/login',async(req,res)=>{
     const { login, senha }  = req.body
 
