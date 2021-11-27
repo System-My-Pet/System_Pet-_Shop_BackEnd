@@ -5,7 +5,7 @@ const routers = express.Router();
 const cors = require('cors')
 
 var corsOptions = {
-    origin: 'http://127.0.0.1:' + PORT,
+    origin: 'http://127.0.0.1:' + 3002,
     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
   }
 
