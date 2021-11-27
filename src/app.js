@@ -12,7 +12,7 @@ const MongoDB = require('./database/mongodb')
 
 const server = express()
 
-const PORT = 3000
+const PORT = 3002
 
 server.use(express.json())
 
@@ -42,12 +42,6 @@ const swaggerOptions = {
   const swaggerDocs = swaggerJsDoc(swaggerOptions);
   server.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
-
-
-  server.get('/', (req,res)=>{
-   
-    return '<h1>Renan Monstro</h1>'
- })
  MongoDB.connect()
 
 server.listen(PORT,()=>{

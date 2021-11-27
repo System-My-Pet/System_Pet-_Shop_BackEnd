@@ -22,7 +22,7 @@ const routers = express.Router();
  *         
  */
  
-routers.post('/login',async(req,res)=>{
+routers.post('/login',cors(corsOptions),async(req,res)=>{
     const { login, senha }  = req.body
 
     const usuario = await funcionarioController.login(login, senha, res)
@@ -32,37 +32,37 @@ routers.post('/login',async(req,res)=>{
 
 
 
-routers.post('/cadastroFuncionario',async(req,res)=>{
+routers.post('/cadastroFuncionario',cors(corsOptions),async(req,res)=>{
     const funcionario = await funcionarioController.create(req.body) 
     
     res.json(funcionario)
 });
 
-routers.post('/cadastroAtendimento', async(req,res) => {
+routers.post('/cadastroAtendimento',cors(corsOptions), async(req,res) => {
     const atendimento = await atendimentoController.create(req.body)
 
     res.json(atendimento)
 });
 
-routers.get('/getAtendimentos',async(req,res)=>{
+routers.get('/getAtendimentos',cors(corsOptions),async(req,res)=>{
     const atendimentos = await atendimentoController.getAtendimentos()
 
     res.json(atendimentos)
 });
 
-routers.get('/getAtendimentosById',async(req,res)=> {
+routers.get('/getAtendimentosById',cors(corsOptions),async(req,res)=> {
     const atendimento = await atendimentoController.getAtendimentosById(req.body);
 
     res.json(atendimento);
 });
 
-routers.put('/Atendimento/update', async(req,res)=> {
+routers.put('/Atendimento/update',cors(corsOptions), async(req,res)=> {
     const atendimento = await atendimentoController.updateStatus(req.body);
 
     res.json(atendimento);
 });
 
-routers.put('/Atendimento/finalizarAtendimento', async(req,res)=> {
+routers.put('/Atendimento/finalizarAtendimento',cors(corsOptions), async(req,res)=> {
     const atendimento = await atendimentoController.finalizarAtendimento(req.body);
 
     res.json(atendimento);
