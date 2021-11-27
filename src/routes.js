@@ -2,7 +2,7 @@ const funcionarioController = require('./controllers/funcionario-controller');
 const atendimentoController = require('./controllers/atendimento-controller');
 const express = require('express')
 const routers = express.Router();
-
+const cors = require('cors')
 
 /**
  * @swagger
