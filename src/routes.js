@@ -4,6 +4,12 @@ const express = require('express')
 const routers = express.Router();
 const cors = require('cors')
 
+var corsOptions = {
+    origin: 'http://127.0.0.1:' + PORT,
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+  }
+
+
 /**
  * @swagger
  * /login:
@@ -12,7 +18,6 @@ const cors = require('cors')
  *     description: Retrieve a single JSONPlaceholder user. Can be used to populate a user profile when prototyping or testing an API.
  *     parameters:
  *       - in: body
- *         name: id
  *         required: true
  *         description: Numeric ID of the user to retrieve.
  *         schema:
