@@ -10,23 +10,7 @@ var corsOptions = {
   }
 
 
-/**
- * @swagger
- * /login:
- *   post:
- *     summary: Retrieve a single JSONPlaceholder user.
- *     description: Retrieve a single JSONPlaceholder user. Can be used to populate a user profile when prototyping or testing an API.
- *     parameters:
- *       - in: body
- *         required: true
- *         description: Numeric ID of the user to retrieve.
- *         schema:
- *           type: object
- *     responses:
- *       200:
- *         
- */
- 
+
 routers.post('/login',cors(corsOptions),async(req,res)=>{
     const { login, senha }  = req.body
 
