@@ -29,6 +29,16 @@ class AtendimentoController{
 
     }
 
+    static async getAtendimentosByStatus(prStatus){
+        try{
+            const atendimento = await Atendimentos.find({status: prStatus})
+            return atendimento;
+        } catch(error){
+            return { error: 'Falha ao buscar Atendimentos.' };
+        }
+
+    }
+
     static async updateStatus(req){
         try{
             const update = {status: req.status};

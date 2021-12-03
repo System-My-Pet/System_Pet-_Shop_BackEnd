@@ -61,6 +61,13 @@ routers.get('/getAtendimentosById',cors(corsOptions),async(req,res)=> {
     res.json(atendimento);
 });
 
+routers.get('/getAtendimentosByStatus',async(req,res)=> {
+    const atendimento = await atendimentoController.getAtendimentosByStatus(req.body.status);
+
+    res.json(atendimento);
+});
+
+
 routers.put('/Atendimento/update',cors(corsOptions), async(req,res)=> {
     const atendimento = await atendimentoController.updateStatus(req.body);
 
