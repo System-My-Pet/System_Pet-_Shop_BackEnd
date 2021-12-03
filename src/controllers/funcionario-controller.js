@@ -1,29 +1,34 @@
 const Funcionarios = require('../models/funcionario')
 const bcrypt = require('bcrypt');
-
+const jwt = require('jsonwebtoken')
 
 
 
 class FuncionarioController {
 
 
+     static async generateHash(senha) {
+        return bcrypt.hash(senha, 10)
+    }
 
-    static async create(req) {
+    static async create(nome, email, senha) {
+
         try {
 
-            bcrypt.hash(req.senha, 10).then(async function (hash) {
-                req.senha = hash
-                const funcionario = await Funcionarios.create(req);
-            });
+           const hash = await FuncionarioController.generateHash(senha)
 
-            return funcionario;
+           const  {nome:nomeBd, email:emailBd} =  await  Funcionarios.create({ nome, email, senha: hash });
+            
+           return {nome: nomeBd, email:emailBd} 
+              
+
         } catch (error) {
             return { error: 'Falha ao registrar Funcionário.' };
         }
     }
 
     static async login(login, senhaDigitada, res) {
-        const { senha: senhaHash } = await Funcionarios.findOne({ login }, { _id: 0 })
+        const { senha: senhaHash } = await Funcionarios.findOne({ email: login }, { _id: 0 })
 
         if (!senhaHash) {
             return { message: 'Usuário não existe!' }
@@ -31,7 +36,17 @@ class FuncionarioController {
 
         const result = await bcrypt.compare(senhaDigitada, senhaHash);
 
-        return result ? { message: 'logado' } : { message: 'error login' }
+        let token = null
+
+        if (result) {
+            jwt.sign({
+                data: 'foobar'
+            }, 'secret', { expiresIn: 60 * 60 }).then((generateToken) => {
+                token = generateToken
+            })
+        }
+
+        return token
 
     }
 

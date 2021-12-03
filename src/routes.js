@@ -9,8 +9,6 @@ var corsOptions = {
     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
   }
 
-
-
 routers.post('/login',cors(corsOptions),async(req,res)=>{
     const { login, senha }  = req.body
 
@@ -20,11 +18,12 @@ routers.post('/login',cors(corsOptions),async(req,res)=>{
 });
 
 
-
 routers.post('/cadastroFuncionario',cors(corsOptions),async(req,res)=>{
-    const funcionario = await funcionarioController.create(req.body) 
+    const { nome, email , senha }  = req.body
+
+    const funcionario = await funcionarioController.create(nome,email, senha) 
     
-    res.json(funcionario)
+     res.json(funcionario)
 });
 
 routers.post('/cadastroAtendimento',cors(corsOptions), async(req,res) => {
