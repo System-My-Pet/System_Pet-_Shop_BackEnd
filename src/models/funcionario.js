@@ -12,7 +12,8 @@ const FuncionarioSchema = new Schema({
     },
     nome: {
         type: String,
-        required: true
+        required: true,
+        unique:true
     },
     dataCriação: {
         type:  Date,

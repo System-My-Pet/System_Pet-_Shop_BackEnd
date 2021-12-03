@@ -1,0 +1,1 @@
+{"version":"1.0.0","name":"System_Pet_Shop","dependencies":{"bcrypt":{"version":"5.0.1"},"dotenv":{"version":"10.0.0"},"express":{"version":"4.17.1"},"jest":{"version":"27.1.0"},"mongoose":{"version":"6.0.9"},"swagger-jsdoc":{"version":"3.7.0"},"swagger-ui-express":{"version":"4.1.6"}}}
