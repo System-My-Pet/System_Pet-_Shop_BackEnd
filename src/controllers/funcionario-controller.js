@@ -28,7 +28,7 @@ class FuncionarioController {
     }
 
     static async login(login, senhaDigitada, res) {
-        const { senha: senhaHash } = await Funcionarios.findOne({ email: login }, { _id: 0 })
+        const { senha: senhaHash, _id } = await Funcionarios.findOne({ email: login },)
 
         if (!senhaHash) {
             return { message: 'Usuário não existe!' }
@@ -39,17 +39,29 @@ class FuncionarioController {
         let token = null
 
         if (result) {
-            jwt.sign({
-                data: 'foobar'
-            }, 'secret', { expiresIn: 60 * 60 }).then((generateToken) => {
-                token = generateToken
-            })
+            const token = jwt.sign({ _id }, process.env.SECRET, {
+                expiresIn: 300 // expires in 5min
+              });
         }
-
-        return token
+        
+        return ({ auth: true, token: token });
 
     }
 
 }
 
+/*app.post('/login', (req, res, next) => {
+    //esse teste abaixo deve ser feito no seu banco de dados
+    if(req.body.user === 'luiz' && req.body.password === '123'){
+      //auth ok
+      const id = 1; //esse id viria do banco de dados
+      const token = jwt.sign({ id }, process.env.SECRET, {
+        expiresIn: 300 // expires in 5min
+      });
+      return res.json({ auth: true, token: token });
+    }
+    
+    res.status(500).json({message: 'Login inválido!'});
+})
+*/
 module.exports = FuncionarioController
