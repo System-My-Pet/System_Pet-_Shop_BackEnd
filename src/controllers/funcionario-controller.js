@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken')
 class FuncionarioController {
 
 
-     static async generateHash(senha) {
+    static async generateHash(senha) {
         return bcrypt.hash(senha, 10)
     }
 
@@ -15,12 +15,12 @@ class FuncionarioController {
 
         try {
 
-           const hash = await FuncionarioController.generateHash(senha)
+            const hash = await FuncionarioController.generateHash(senha)
 
-           const  {nome:nomeBd, email:emailBd} =  await  Funcionarios.create({ nome, email, senha: hash });
-            
-           return {nome: nomeBd, email:emailBd} 
-              
+            const { nome: nomeBd, email: emailBd } = await Funcionarios.create({ nome, email, senha: hash });
+
+            return { nome: nomeBd, email: emailBd }
+
 
         } catch (error) {
             return { error: 'Falha ao registrar Funcionário.' };
@@ -28,7 +28,7 @@ class FuncionarioController {
     }
 
     static async login(login, senhaDigitada, res) {
-        const { senha: senhaHash, _id } = await Funcionarios.findOne({ email: login },)
+        const { senha: senhaHash, _id, nome } = await Funcionarios.findOne({ email: login },)
 
         if (!senhaHash) {
             return { message: 'Usuário não existe!' }
@@ -36,15 +36,15 @@ class FuncionarioController {
 
         const result = await bcrypt.compare(senhaDigitada, senhaHash);
 
-        let token = null
-
+        let token
         if (result) {
-            const token = jwt.sign({ _id }, process.env.SECRET, {
-                expiresIn: 300 // expires in 5min
-              });
+            token = jwt.sign({ id: _id }, process.env.SECRET, {
+                expiresIn: 60 * 60 * 60 // expires in 5min
+            });
+
+            res.header('Authorization', `Bearer ${token}`).send(token)
         }
-        
-        return ({ auth: true, token: token });
+
 
     }
 
