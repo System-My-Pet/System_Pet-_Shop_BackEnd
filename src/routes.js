@@ -5,7 +5,7 @@ const routers = express.Router();
 const cors = require('cors')
 
 var corsOptions = {
-    origin: 'http://127.0.0.1:' + 3002,
+    origin: '*',
     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
   }
 
@@ -38,7 +38,7 @@ routers.get('/getAtendimentos',cors(corsOptions),async(req,res)=>{
     res.json(atendimentos)
 });
 
-routers.get('/getAtendimentosById',cors(corsOptions),async(req,res)=> {
+routers.get('/getAtendimentosById/:id',cors(corsOptions),async(req,res)=> {
     const atendimento = await atendimentoController.getAtendimentosById(req.body);
 
     res.json(atendimento);
