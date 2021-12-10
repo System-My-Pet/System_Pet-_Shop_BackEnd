@@ -39,7 +39,8 @@ routers.get('/getAtendimentos',cors(corsOptions),async(req,res)=>{
 });
 
 routers.get('/getAtendimentosById/:id',cors(corsOptions),async(req,res)=> {
-    const atendimento = await atendimentoController.getAtendimentosById(req.body);
+    
+    const atendimento = await atendimentoController.getAtendimentosById(req.params.id);
 
     res.json(atendimento);
 });
