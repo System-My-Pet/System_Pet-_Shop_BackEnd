@@ -51,6 +51,20 @@ class AtendimentoController{
             return { error: 'Falha ao atualizar Atendimento.' };
         }
     }
+    
+    static async update(req){
+        try{
+            const { _id, cpf, dataDeEntrada, dataDeSaida, email, especie, nomeDono,numero, status } = req;
+            const data  = { cpf, dataDeEntrada, dataDeSaida, email, especie, nomeDono,numero, status };
+
+            const atendimento = await Atendimentos.findByIdAndUpdate({_id},data,{new: true});
+
+            return atendimento;
+        }catch(error){
+            return { error: 'Falha ao atualizar Atendimento.' };
+        }
+    }
+
 
     static async finalizarAtendimento(req){
         try{
