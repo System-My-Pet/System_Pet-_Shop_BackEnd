@@ -42,7 +42,9 @@ class FuncionarioController {
                 expiresIn: 60 * 60 * 60 // expires in 5min
             });
 
-            res.header('Authorization', `Bearer ${token}`).send(token)
+            res.header('Authorization', `Bearer ${token}`).send({token})
+        } else{
+             res.status(401).send({error: "senha ou usuário errado"})
         }
 
 
