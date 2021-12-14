@@ -13,6 +13,12 @@ var corsOptions =
     "optionsSuccessStatus": 200
 }
 
+routers.use((req,res,next) => {
+    res.header("Acess-Control-Allow-origin", "*");
+    routers.use(cors());
+    next();
+})
+
 routers.get('/status', (req, res) => {
 
     res.json({ status: "TEST" })
@@ -73,7 +79,7 @@ routers.put('/Atendimento/finalizarAtendimento', cors(corsOptions), async (req, 
     res.json(atendimento);
 });
 
-routers.use(checkToken)
+//routers.use(checkToken)
 
 routers.post('/login', cors(corsOptions), async (req, res) => {
 
