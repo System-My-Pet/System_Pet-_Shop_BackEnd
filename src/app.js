@@ -44,7 +44,7 @@ const swaggerOptions = {
 
  MongoDB.connect()
 
-server.listen(PORT,()=>{
+server.listen(PORT || 3002,()=>{
     
     console.log('server running')
 })
