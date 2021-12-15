@@ -12,7 +12,7 @@ const checkToken = async function (req, res, next){
 
     const [,token2] = token.split(" ")
 
-    const decoded =  jwt.verify(token2, process.env.SECRET,function(error, decoded){
+    const decoded =  jwt.verify(token2, '1234',function(error, decoded){
 
         if(error){
             return res.status(401).json({ error: 'error token' })

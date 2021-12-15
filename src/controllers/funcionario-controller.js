@@ -38,7 +38,7 @@ class FuncionarioController {
 
         let token
         if (result) {
-            token = jwt.sign({ id: _id }, process.env.SECRET, {
+            token = jwt.sign({ id: _id }, '1234', {
                 expiresIn: 60 * 60 * 60 // expires in 5min
             });
 
